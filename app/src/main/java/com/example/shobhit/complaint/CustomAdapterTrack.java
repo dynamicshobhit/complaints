@@ -1,7 +1,6 @@
 package com.example.shobhit.complaint;
 
 import android.content.Context;
-import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -10,34 +9,30 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import java.util.ArrayList;
-///CustomAdapterPosts(this,post_titles,post_body,post_votes,post_resolved,post_postedby))
+
 /**
- * Created by shobhit on 28-03-2016.
+ * Created by shobhit on 29-03-2016.
  */
-public class CustomAdapterPosts extends BaseAdapter {
+public class CustomAdapterTrack extends BaseAdapter {
+
     ArrayList<String> titles;
     ArrayList<String> body;
     ArrayList<String> votes;
     ArrayList<String> resolved;
     ArrayList<String> posted_by;
 
-    public static String tit="";
-    public static String des="";
-    public static String id="";
-
-
     Context context;
-    Posts posts1;
+    track_complaints track_complaints1;
     private static LayoutInflater inflater=null;
-    public CustomAdapterPosts(Posts posts, ArrayList<String> post_titles, ArrayList<String> post_body, ArrayList<String> post_votes, ArrayList<String> post_resolved,ArrayList<String> post_postedby) {
+    public CustomAdapterTrack(track_complaints track_complaints, ArrayList<String> post_titles, ArrayList<String> post_body, ArrayList<String> post_votes, ArrayList<String> post_resolved,ArrayList<String> post_postedby) {
         // TODO Auto-generated constructor stub
         titles=post_titles;
         body=post_body;
         votes=post_votes;
         resolved=post_resolved;
         posted_by=post_postedby;
-        context=posts;
-        posts1=posts;
+        context=track_complaints;
+        track_complaints1=track_complaints;
         inflater = ( LayoutInflater )context.
                 getSystemService(Context.LAYOUT_INFLATER_SERVICE);
     }
@@ -89,30 +84,10 @@ public class CustomAdapterPosts extends BaseAdapter {
                 // TODO Auto-generated method stub
 
                 //courselist1.getcoursedetails(rowView);
-                getpostdetails(rowView);
                 Toast.makeText(context, "You Clicked " + titles.get(position), Toast.LENGTH_SHORT).show();
             }
         });
         return rowView;
-    }
-
-    public void getpostdetails(View v){
-        String threadtitle = ((TextView) v.findViewById(R.id.posttitle)).getText().toString();
-        ArrayList<String> titles=Posts.post_titles;
-        ArrayList<String> descriptions=Posts.post_body;
-        ArrayList<String> ids=Posts.post_id;
-        for(int i=0;i<titles.size();i++)
-        {
-            if(titles.get(i).equals(threadtitle))
-            {
-                tit=titles.get(i);
-                des=descriptions.get(i);
-                id=ids.get(i);
-                break;
-            }
-        }
-        Intent intent4=new Intent(context,Comments.class);
-        context.startActivity(intent4);
     }
 
 

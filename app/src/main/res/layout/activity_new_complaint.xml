@@ -128,6 +128,7 @@
         <ImageButton
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:onClick="gototrack"
             android:id="@+id/imageButton3"
             android:src="@drawable/track_complaints"
             android:layout_alignTop="@+id/imageButton2"

@@ -21,31 +21,28 @@ import org.json.JSONObject;
 
 import java.util.ArrayList;
 
-public class Posts extends AppCompatActivity {
+public class track_complaints extends AppCompatActivity {
 
     private ListView mainListView ;
     private RequestQueue requestQueue;
     private SharedPreferences preferences;
-    public static ArrayList<String> post_titles=new ArrayList<>();                                //this store the name of courses
-    public static ArrayList<String> post_body=new ArrayList<>();
+    ArrayList<String> post_titles=new ArrayList<>();                                //this store the name of courses
+    ArrayList<String> post_body=new ArrayList<>();
     ArrayList<String> post_votes=new ArrayList<>();                                //this store the credit of courses
     ArrayList<String> post_resolved=new ArrayList<>();
     ArrayList<String> post_postedby=new ArrayList<>();
-    public static ArrayList<String> post_id=new ArrayList<>();
     Context context;
     public final String IP_ADDRESS = login.ipaddress();
-    public String API_POSTS;
+    public String API_TRACK_COMPLAINTS;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_posts);
+        setContentView(R.layout.activity_track_complaints);
         context=this;
-        Intent intent = getIntent();
-        String temp = intent.getExtras().getString("levelname");
-        API_POSTS=IP_ADDRESS+"/api/post/"+temp+".json";
+        API_TRACK_COMPLAINTS=IP_ADDRESS+"/api/post/by-user/"+login.userid()+".json";
         requestQueue = Volley.newRequestQueue(this);
-        StringRequest stringRequest = new StringRequest(Request.Method.GET, API_POSTS,
+        StringRequest stringRequest = new StringRequest(Request.Method.GET, API_TRACK_COMPLAINTS,
                 new Response.Listener<String>() {
                     @Override
                     public void onResponse(String response) {
@@ -55,12 +52,12 @@ public class Posts extends AppCompatActivity {
                 new Response.ErrorListener() {
                     @Override
                     public void onErrorResponse(VolleyError error) {
-                        Toast.makeText(Posts.this, error.getMessage(), Toast.LENGTH_LONG).show();
+                        Toast.makeText(track_complaints.this, error.getMessage(), Toast.LENGTH_LONG).show();
                     }
                 });
         preferences = PreferenceManager.getDefaultSharedPreferences(this);
         requestQueue.add(stringRequest);
-        mainListView = (ListView) findViewById( R.id.listviewposts);
+        mainListView = (ListView) findViewById( R.id.listviewtrackcomplaints);
 
     }
 
@@ -77,10 +74,10 @@ public class Posts extends AppCompatActivity {
                 post_votes.add(jo.getString("votes"));
                 post_resolved.add(jo.getString("Resolved"));
                 post_postedby.add(jo.getString("posted_by"));
-                post_id.add(jo.getString("id"));
+
 
                 // Set the ArrayAdapter as the ListView's adapter.
-                mainListView.setAdapter( new CustomAdapterPosts(this,post_titles,post_body,post_votes,post_resolved,post_postedby));
+                mainListView.setAdapter( new CustomAdapterTrack(this,post_titles,post_body,post_votes,post_resolved,post_postedby));
             }
 
         }

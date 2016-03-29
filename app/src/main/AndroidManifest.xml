@@ -21,7 +21,10 @@
         <activity android:name=".login" />
         <activity android:name=".signup" />
         <activity android:name=".Posts" />
-        <activity android:name=".New_complaint"></activity>
+        <activity android:name=".New_complaint" />
+        <activity android:name=".View_complaints" />
+        <activity android:name=".track_complaints" />
+        <activity android:name=".Comments"></activity>
     </application>
 
 </manifest>

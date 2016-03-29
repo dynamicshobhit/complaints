@@ -36,7 +36,7 @@ public class login extends AppCompatActivity {
     public String password;
     public final String IP_ADDRESS = "http://10.192.38.18:8000/Backend_for_Complaints";
     public final static String IP_ADDRESS1 = "http://10.192.38.18:8000/Backend_for_Complaints";
-
+    public String userid="";
     public String API_LOGIN;
     private static final String SET_COOKIE_KEY = "Set-Cookie";
     private static final String COOKIE_KEY = "Cookie";
@@ -133,6 +133,8 @@ public class login extends AppCompatActivity {
             System.out.println("yop");
             JSONObject jObject = new JSONObject(json);
             System.out.println(jObject);
+            JSONObject jo= jObject.getJSONObject("user");
+            userid=jo.getString("id");
             String success1 = jObject.getString("success");
             if (success1.equals("true")) {                                                      //TODO generate intent and also something like hello username
                 Toast.makeText(login.get(), "login successful", Toast.LENGTH_LONG).show();
@@ -150,6 +152,10 @@ public class login extends AppCompatActivity {
     public static String ipaddress()
     {
         return IP_ADDRESS1;
+    }
+    public static String userid()
+    {
+        return userid();
     }
     public void checkuser(View v)
     {

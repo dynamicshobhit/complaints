@@ -166,10 +166,10 @@ public class New_complaint extends AppCompatActivity implements AdapterView.OnIt
     }
     public void gototrack(View view)
     {
-        Intent a=new Intent(this,New_complaint.class);
+        Intent a=new Intent(this,track_complaints.class);
         startActivity(a);
     }
-    public void gotoviw(View view)
+    public void gotoview(View view)
     {
         Intent a=new Intent(this,New_complaint.class);
         startActivity(a);
