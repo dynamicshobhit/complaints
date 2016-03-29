@@ -12,6 +12,7 @@ import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.Toast;
 
+import com.android.volley.Network;
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
@@ -89,13 +90,16 @@ public class New_complaint extends AppCompatActivity implements AdapterView.OnIt
                     case "Institute Level":
                         category+="1";
                         complaintlevel="1";
+                        break;
                     case "Hostel Level":
                         category+="2";
                         complaintlevel="2";
+                        break;
                     case "Individual Level":
                         category+="3";
                         complaintlevel="3";
-                    break;
+                        break;
+
                 }
                 break;
             case R.id.spinner_category:
@@ -103,21 +107,27 @@ public class New_complaint extends AppCompatActivity implements AdapterView.OnIt
                 switch(item){
                     case "Dean":
                         category+="1";
+                        break;
                     case "BSW":
                         category+="2";
+                        break;
                     case "Institute Security":
                         category+="3";
+                        break;
                     case "CSC":
                         category+="4";
+                        break;
                     case "Hostel Mess Secy.":
                         category+="5";
+                        break;
                     case "Hostel Maintenance Secy.":
                         category+="6";
+                        break;
                     case "Hostel Cultural Secy.":
                         category+="7";
+                        break;
                     case "Hostel Sports Secy.":
                         category+="8";
-
                         break;
                 }
                     break;
@@ -146,7 +156,9 @@ public class New_complaint extends AppCompatActivity implements AdapterView.OnIt
                     @Override
                     public void onResponse(String response) {
                         System.out.println(API_NEW_COMPLAINT);
-                        //Toast.makeText(MainActivity.this, "comment posted"+thread(response), Toast.LENGTH_LONG).show();
+                        edittitle.setText("");
+                        editbody.setText("");
+                        Toast.makeText(New_complaint.this, "complaint posted", Toast.LENGTH_SHORT).show();
                     }
                 },
                 new Response.ErrorListener() {
@@ -166,17 +178,21 @@ public class New_complaint extends AppCompatActivity implements AdapterView.OnIt
     }
     public void gototrack(View view)
     {
-        Intent a=new Intent(this,track_complaints.class);
-        startActivity(a);
-    }
+        Toast.makeText(New_complaint.this, "track complaints pressed", Toast.LENGTH_LONG).show();
+        Intent b=new Intent(this,Track_complaint.class);
+        startActivity(b);
+        System.out.println("track");
+        }
     public void gotoview(View view)
     {
-        Intent a=new Intent(this,New_complaint.class);
+        Intent a=new Intent(this,View_complaints.class);
         startActivity(a);
+
+        System.out.println("view");
     }
     public void gotoprofile(View view)
     {
-        Intent a=new Intent(this,New_complaint.class);
+        Intent a=new Intent(this,notifications.class);
         startActivity(a);
     }
 }
